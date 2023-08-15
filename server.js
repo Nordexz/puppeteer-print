@@ -1,7 +1,11 @@
+const express = require('express')
 let puppeteer = require('puppeteer');
 const chromium = require('chrome-aws-lambda');
 
-export default async (req, res) => {
+const app = express()
+const port = 4000
+
+app.get('/print', async (req, res, next) => {
   try {
     const browser = await puppeteer.launch({
       args: [...chromium.args, '--hide-scrollbars', '--disable-web-security', '--disable-extensions', '--no-sandbox'],
@@ -9,6 +13,9 @@ export default async (req, res) => {
       executablePath: await chromium.executablePath,
       headless: 'new',
     });
+
+    console.log(req.query)
+
     const page = await browser.newPage();
 
     await page.goto(
@@ -39,4 +46,8 @@ export default async (req, res) => {
     console.error("Error:", error);
     res.status(500).json({ error: "An error occurred" });
   }
-};
+})
+
+app.listen(port, () => {
+  console.log(`server startedd on port ${port}`)
+})
