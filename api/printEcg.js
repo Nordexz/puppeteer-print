@@ -1,4 +1,4 @@
-let puppeteer = require('puppeteer');
+let puppeteer = require('puppeteer-core');
 const chromium = require('chrome-aws-lambda');
 
 export default async (req, res) => {
