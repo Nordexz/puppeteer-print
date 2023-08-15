@@ -3,7 +3,7 @@ let puppeteer = require('puppeteer');
 const chromium = require('chrome-aws-lambda');
 
 const app = express()
-const port = process.env.PORT || 4000
+const port = process.env.PORT || 5001
 
 app.get('/print', async (req, res, next) => {
   try {
@@ -48,6 +48,6 @@ app.get('/print', async (req, res, next) => {
   }
 })
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`server startedd on port ${port}`)
 })
