@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "^14"
+  },
   "dependencies": {
     "chrome-aws-lambda": "^6.0.0",
     "puppeteer": "^21.0.3",
